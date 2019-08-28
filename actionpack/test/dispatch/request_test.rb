@@ -627,7 +627,8 @@ class RequestRewind < BaseRequestTest
   test "raw_post rewinds rack.input if RAW_POST_DATA is nil" do
     request = stub_request(
       "rack.input" => StringIO.new("raw"),
-      "CONTENT_LENGTH" => 3
+      "CONTENT_LENGTH" => 3,
+      "RAW_POST_DATA" => nil
     )
     assert_equal "raw", request.raw_post
     assert_equal "raw", request.env["rack.input"].read
